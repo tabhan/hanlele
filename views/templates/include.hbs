@@ -1,0 +1,7 @@
+{{#if (cache 'serverConf' 'endeca.previewEnabled')}}
+<div data-oc-content-item-id="{{contentItemId .}}">
+{{> (template .)}}
+</div>
+{{else}}
+{{> (template .)}}
+{{/if}}

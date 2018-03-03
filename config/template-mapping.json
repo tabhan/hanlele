@@ -1,0 +1,9 @@
+{
+  "loginPage": "template1",
+  "productListPage": "template2",
+  "searchPage": "template2",
+  "topSlot": "slot",
+  "footerSlot": "slot",
+  "globalContainer_TopSectionLanding": "globalContainer",
+  "globalContainer_MainSectionProductList": "globalContainer"
+}

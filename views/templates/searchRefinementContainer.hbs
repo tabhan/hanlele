@@ -1,0 +1,58 @@
+<section class="refinement container jq-refinement">
+    <div class="text-center title">
+        <a data-toggle="collapse" href="javascript:void(0)"
+           title="{{#contentMsg 'ProductListPage' 'Label.PLP.Filter.Description'}}Me gustar&#237;a {{/contentMsg}}"
+           data-target="#coll-subtitle" aria-expanded="false">
+            {{#contentMsg 'ProductListPage' 'Label.PLP.Filter.Description'}}Me gustar&#237;a {{/contentMsg}}
+            <span class="icon-plus-circle-empty jq-refinement-plus hidden-xs" id="openRefinementButton"
+                  title="{{#contentMsg 'GlobalCartridges' 'ALT.PLP.ExpandDemention'}}{{/contentMsg}}"> </span>
+        </a>
+
+        {{#each refinementMenus as | refinementMenu refinementMenuId |}}
+            {{#if refinementMenu.selectedRefinements}}
+                <ul class="searchBreadBox list-inline">
+                    {{#each refinementMenu.selectedRefinements as | refinement refinementId |}}
+                        <li>
+                            <span>{{refinement.label}}</span>
+                            <a href="{{siteAppConf 'storeHostUrl'}}{{refinement.navigationState}}"
+                               class="icon-close-circle-reverse"></a>
+                        </li>
+                    {{/each}}
+                </ul>
+            {{/if}}
+        {{/each}}
+        <a class="icon-plus-circle-empty jq-refinement-plus visible-xs" data-toggle="modal"
+           href=".modal-refinement"> </a>
+    </div>
+    <div class="modal fade modal-refinement" tabindex="-1" role="dialog">
+        <a href="javascript:;" class="icon-close-circle-reverse visible-xs close" data-dismiss="modal"
+           aria-label="Close"></a>
+        <div class="text-center title visible-xs">
+            <p>{{#contentMsg 'ProductListPage' 'Label.PLP.Filter.Description'}}Me gustar&#237;a {{/contentMsg}}</p>
+            {{#each refinementMenus as | refinementMenu refinementMenuId |}}
+                {{#if refinementMenu.selectedRefinements}}
+                    <ul class="searchBreadBox list-inline">
+                        {{#each refinementMenu.selectedRefinements as | refinement refinementId |}}
+                            <li>
+                                <span>{{refinement.label}}</span>
+                                <a href="{{siteAppConf 'storeHostUrl'}}{{refinement.navigationState}}"
+                                   class="icon-close-circle-reverse"></a>
+                            </li>
+                        {{/each}}
+                    </ul>
+                {{/if}}
+            {{/each}}
+            <a class="icon-plus-circle-empty" aria-expanded="true" data-dismiss="modal"> </a>
+        </div>
+        {{#if refinementMenus}}
+            <div class="text-center collapse" id="coll-subtitle">
+                <ul class="sub-title list-inline">
+                    {{#each refinementMenus}}
+                        {{> (template .)}}
+                    {{/each}}
+                </ul>
+                <a href="${fn:escapeXml(originalRequestUrl)}" class="btn-filter"  id="refinementFilterButton" data-params="${pageContext.request.queryString} " data-ref-index="${param.refIndex}"><act:message _key="Action.Button.PLP.Filter" _page="ProductListPage">FILTRA</act:message></a>
+            </div>
+        {{/if}}
+    </div>
+</section>

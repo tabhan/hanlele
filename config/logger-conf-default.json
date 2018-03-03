@@ -1,0 +1,29 @@
+{
+  "appenders": {
+    "fileLogger": {
+      "type": "dateFile",
+      "filename": "logs/express",
+      "pattern": "-yyyy-MM-dd.log",
+      "alwaysIncludePattern": true
+    },
+    "consoleLogger": {
+      "type": "console"
+    }
+  },
+  "categories": {
+    "server": {
+      "appenders": [
+        "consoleLogger",
+        "fileLogger"
+      ],
+      "level": "info"
+    },
+    "default": {
+      "appenders": [
+        "consoleLogger",
+        "fileLogger"
+      ],
+      "level": "info"
+    }
+  }
+}

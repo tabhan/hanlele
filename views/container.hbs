@@ -1,0 +1,70 @@
+{{#with (convertContentItem . 'page')}}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="yes" name="apple-mobile-web-app-capable">
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport">
+        <meta name="format-detection" content="telephone=no">
+        <title>{{title}}</title>
+        <meta name="description" content="{{metaDescription}}"/>
+        <meta name="keywords" content="{{metaKeywords}}"/>
+        {{#contentMsg 'GlobalCartridges' 'Content.GoogleTagManager.Head11111111111111'}}
+            <!-- Google Tag Manager
+            <script>(function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({
+                    'gtm.start':
+                            new Date().getTime(), event: 'gtm.js'
+                });
+                var f = d.getElementsByTagName(s)[0],
+                        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+                j.async = true;
+                j.src =
+                        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-TSVC2G');</script>
+             End Google Tag Manager -->
+        {{/contentMsg}}
+        <script>dataLayer = [];</script>
+        <base href="/"/>
+        <link rel="icon" href="{{cache 'siteAppConf' 'staticHostUrl'}}/ico/favicon-32x32.png" type="image/x-icon"
+              sizes="32x32"/>
+        <link rel="apple-touch-icon-precomposed"
+              href="{{cache 'siteAppConf' 'staticHostUrl'}}/ico/apple-touch-icon-precomposed.png">
+        <link rel="stylesheet" href="{{cache 'siteAppConf' 'staticHostUrl'}}/styles/all.min.css">
+        <link rel="stylesheet" href="{{cache 'siteAppConf' 'staticHostUrl'}}/styles/font.css">
+        <link rel="stylesheet" href="{{cache 'siteAppConf' 'staticHostUrl'}}/marketing/styles/all.css">
+        {{#each cssArray}}
+            <link rel="stylesheet" href="{{cache 'siteAppConf' 'staticHostUrl'}}/styles/page/{{this}}.css">
+        {{/each}}
+    </head>
+    <body>
+
+    <div id="clickToCall"></div>
+    <var id="storeHostUrl" class="hidden">{{cache 'siteAppConf' 'storeHostUrl'}}</var>
+    <var id="staticHostUrl" class="hidden">{{cache 'siteAppConf' 'staticHostUrl'}}</var>
+    <var id="siteAppConfig" class="hidden">{{{toJSON (cache 'siteAppConf' undefined)}}}</var>
+
+    {{{body}}}
+    <script defer="defer" src="{{cache 'siteAppConf' 'staticHostUrl'}}{{cache 'siteAppConf' 'msgFilePath'}}"></script>
+    <script src="{{cache 'siteAppConf' 'staticHostUrl'}}/scripts/lib.js"></script>
+    <script defer="defer" src="{{cache 'siteAppConf' 'staticHostUrl'}}/scripts/deferlib.js"></script>
+    {{#each jsArray}}
+        <script defer="defer" src="{{cache 'siteAppConf' 'staticHostUrl'}}/scripts/page/{{this}}.js"></script>
+    {{/each}}
+
+    {{#if (cache 'serverConf' 'endeca.previewEnabled')}}
+        <script type="text/javascript" src="{{cache 'serverConf' 'endeca.workbench.url'}}/tools/xmgr/app/preview/js/preview.js"></script>
+        <link rel="stylesheet" href="{{cache 'serverConf' 'endeca.workbench.url'}}/tools/xmgr/app/preview/css/audit-site.css" />
+        <script type="text/javascript">
+            $(document).ready(function () {
+                xmgrPreview.initialize({{{toJSON rootContentItem}}});
+            });
+        </script>
+    {{/if}}
+
+    </body>
+    </html>
+{{/with}}

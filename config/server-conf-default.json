@@ -1,0 +1,21 @@
+{
+  "server": {
+    "port": 3000
+  },
+  "store": {
+    "url": "http://localhost:7001",
+    "headers": {
+      "accept": "application/json",
+      "accept-encoding": "application/json"
+    }
+  },
+  "endeca": {
+    "previewEnabled": true,
+    "workbench": {
+      "url": "http://assembler.mdexhost:8006/ifcr"
+    }
+  },
+  "static": {
+    "url": "http://localhost/static"
+  }
+}

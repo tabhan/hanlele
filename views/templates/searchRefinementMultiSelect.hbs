@@ -1,0 +1,28 @@
+{{#if refinements}}
+    <li class="sub-level">
+        <a data-toggle="collapse" href="javascript:void(0)" data-target="#coll-optionLayer{{dimensionId}}"
+           aria-expanded="false">{{name}}<span class="icon-angle-down-s"></span></a>
+        <div class="option-level collapse jq-option-collapse" id="coll-optionLayer{{dimensionId}}">
+            <div class="link-title visible-xs">
+                <a data-toggle="collapse"
+                   href="#coll-optionLayer{{dimensionId}}"
+                   class="icon-angle-left"></a>
+                {{name}}
+            </div>
+            <ul class="list-inline clearfix">
+                {{#each refinements as |refinement|}}
+                    {{#if (and @first selectAllCheckBoxName)}}
+                        <li class="form-group">
+                            <div class="checkbox small">
+                                <input type="checkbox" data-select-all="true" data-dimension="{{dimensionId}}"
+                                       id="jq_{{dimensionId}}" class="dimension_refinement_checkbox" autocomplete="off"
+                                       {{#if (eq refinements.length selectedRefinements.length)}}checked{{/if}}/>
+                                <label for="jq_${contentItem.dimensionId}">{{selectAllCheckBoxName}}</label>
+                            </div>
+                        </li>
+                    {{/if}}
+                {{/each}}
+            </ul>
+        </div>
+    </li>
+{{/if}}
