@@ -3,8 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "babel-node": "node ./node_modules/babel-cli/bin/babel-node.js ./lib/app.js",
-    "build": "babel lib -d dist"
+    "babel-start": "babel-node lib/app.js",
+    "prebuild": "rimraf dist",
+    "build": "babel lib -d dist",
+    "prestart": "npm run build"
   },
   "dependencies": {
     "babel-cli": "^6.26.0",
@@ -14,6 +16,7 @@
     "express-handlebars": "^3.0.0",
     "express-minify-html": "^0.12.0",
     "lodash": "^4.17.5",
-    "log4js": "^2.5.3"
+    "log4js": "^2.5.3",
+    "rimraf": "^2.6.2"
   }
 }

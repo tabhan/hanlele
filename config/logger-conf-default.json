@@ -1,8 +1,14 @@
 {
   "appenders": {
+    "accessfileLogger": {
+      "type": "dateFile",
+      "filename": "logs/access",
+      "pattern": "-yyyy-MM-dd.log",
+      "alwaysIncludePattern": true
+    },
     "fileLogger": {
       "type": "dateFile",
-      "filename": "logs/express",
+      "filename": "logs/server",
       "pattern": "-yyyy-MM-dd.log",
       "alwaysIncludePattern": true
     },
@@ -11,6 +17,13 @@
     }
   },
   "categories": {
+    "access": {
+      "appenders": [
+        "consoleLogger",
+        "accessfileLogger"
+      ],
+      "level": "info"
+    },
     "server": {
       "appenders": [
         "consoleLogger",
